@@ -1,34 +1,29 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import {
   View,
-  Text,
-  Button,
-  Input,
   Item,
   Picker,
   Icon,
   Textarea,
-  Content,
   Container,
+  Content,
+  Text,
+  Button,
 } from 'native-base';
-import DatePicker from 'react-native-datepicker';
+import React, {useEffect, useState} from 'react';
+import {LogBox, Image, Alert} from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
-import {LogBox} from 'react-native';
-import axios from 'axios';
 
-const Register = ({navigation}) => {
-  const [NIK, setNIK] = useState();
-  const [Nama, setNama] = useState();
-  const [Email, setEmail] = useState();
-  const [TempatLahir, setTempatLahir] = useState();
-  const [TanggalLahir, setTanggalLahir] = useState();
+const AddressRegister = ({route, navigation}) => {
+  const Data = route.params;
+  const [FotoProfil, setFotoProfil] = useState(
+    'https://img.icons8.com/ios-glyphs/100/000000/camera.png',
+  );
+  const [Error, setError] = useState(false);
   const [DetailAlamat, setDetailAlamat] = useState();
-  // State Password & Validasinya
-  const [Password, setPassword] = useState('');
-  const [RepeatPassword, setRepeatPassword] = useState('');
   // State Provinsi & Pendukungnya
   const [Provinsi, setProvinsi] = useState({id: 0, nama: 'Pilih Provinsi'});
   const [ListProvinsi, setListProvinsi] = useState([]);
@@ -104,21 +99,57 @@ const Register = ({navigation}) => {
       });
   };
 
-  const createAccount = () => {
-    const data = {
-      NIK,
-      Nama,
-      Email,
-      TempatLahir,
-      TanggalLahir,
-      Provinsi: Provinsi.nama,
-      Kota: Kota.nama,
-      Kecamatan: Kecamatan.nama,
-      Kelurahan: Kelurahan.nama,
-      DetailAlamat,
-      Password,
+  // Fungsi untuk menjalankan ImagePicker Untuk mengambil gambar melalui Kamera
+  const captureImage = async () => {
+    let options = {
+      maxWidth: 1280,
+      maxHeight: 1024,
+      quality: 1,
+      saveToPhotos: true,
     };
-    navigation.navigate('FaceRegister', data);
+    launchCamera(options, response => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        Alert.alert('User cancelled camera picker');
+        return;
+      } else if (response.errorCode === 'camera_unavailable') {
+        Alert.alert('Camera not available on device');
+        return;
+      } else if (response.errorCode === 'permission') {
+        Alert.alert('Permission not satisfied');
+        return;
+      } else if (response.errorCode === 'others') {
+        Alert.alert(response.errorMessage);
+        return;
+      }
+      setFotoProfil(response.uri);
+    });
+  };
+
+  // Fungsi untuk menjalankan ImagePicker Untuk mengambil gambar melalui file
+  const chooseFile = async () => {
+    let options = {
+      maxWidth: 1280,
+      maxHeight: 1024,
+      quality: 1,
+    };
+    launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        Alert.alert('User cancelled camera picker');
+        return;
+      } else if (response.errorCode === 'camera_unavailable') {
+        Alert.alert('Camera not available on device');
+        return;
+      } else if (response.errorCode === 'permission') {
+        Alert.alert('Permission not satisfied');
+        return;
+      } else if (response.errorCode === 'others') {
+        Alert.alert(response.errorMessage);
+        return;
+      }
+      setFotoProfil(response.uri);
+    });
   };
 
   useEffect(() => {
@@ -127,85 +158,71 @@ const Register = ({navigation}) => {
     getKecamatan();
     getKelurahan();
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Provinsi, Kota, Kecamatan, Kelurahan]);
+
+  const next = () => {
+    const data = {
+      ...Data,
+      Provinsi: Provinsi.nama,
+      Kota: Kota.nama,
+      Kecamatan: Kecamatan.nama,
+      Kelurahan: Kelurahan.nama,
+      DetailAlamat,
+      FotoProfil,
+    };
+    if (
+      FotoProfil ===
+        'https://img.icons8.com/ios-glyphs/100/000000/camera.png' ||
+      Provinsi.id === 0 ||
+      Kota.id === 0 ||
+      Kecamatan.id === 0 ||
+      Kelurahan.id === 0 ||
+      !DetailAlamat
+    ) {
+      Alert.alert('Harap Isi semua Data');
+      setError(true);
+    } else {
+      navigation.navigate('FaceRegister', data);
+    }
+  };
 
   return (
     <Container>
       <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
-        <Text style={styles.title}>Create an Account</Text>
+        {/* <Text style={styles.title}>Create an Account</Text> */}
         <Content>
           <View style={styles.container}>
-            <View style={styles.form}>
-              <Item regular style={styles.inputContainer}>
-                <Input
-                  keyboardType="number-pad"
-                  placeholder="NIK"
-                  style={styles.input}
-                  value={NIK}
-                  onChangeText={nik => setNIK(nik)}
-                />
-              </Item>
-              <Item regular style={styles.inputContainer}>
-                <Input
-                  placeholder="Nama"
-                  style={styles.input}
-                  value={Nama}
-                  onChangeText={nama => setNama(nama)}
-                />
-              </Item>
-              <Item regular style={styles.inputContainer}>
-                <Input
-                  textContentType="emailAddress"
-                  placeholder="Email"
-                  style={styles.input}
-                  value={Email}
-                  onChangeText={email => setEmail(email)}
-                />
-              </Item>
-              <Item regular style={styles.inputContainer}>
-                <Input
-                  placeholder="Tempat Lahir"
-                  style={styles.input}
-                  value={TempatLahir}
-                  onChangeText={tempatLahir => setTempatLahir(tempatLahir)}
-                />
-              </Item>
-              <Item regular style={styles.dateContainer}>
-                <DatePicker
-                  style={styles.dateInput}
-                  date={TanggalLahir}
-                  mode="date"
-                  placeholder="Tanggal Lahir"
-                  format="YYYY-MM-DD"
-                  minDate="1900-01-01"
-                  maxDate={new Date()}
-                  confirmBtnText="Confirm"
-                  cancelBtnText="Cancel"
-                  onDateChange={date => {
-                    setTanggalLahir(date);
+            <View tyle={styles.form}>
+              <Text style={styles.profilText}>Foto Profil :</Text>
+              <View style={styles.profilContainer}>
+                <Image
+                  source={{
+                    uri: FotoProfil,
                   }}
-                  customStyles={{
-                    dateInput: {
-                      borderColor: 'rgba(0,0,0,0)',
-                    },
-                    dateText: {
-                      paddingHorizontal: 10,
-                      alignSelf: 'flex-start',
-                      fontFamily: 'System',
-                      fontSize: 17,
-                      color: '#575757',
-                    },
-                    placeholderText: {
-                      paddingHorizontal: 10,
-                      alignSelf: 'flex-start',
-                      fontFamily: 'System',
-                      fontSize: 17,
-                      color: '#575757',
-                    },
-                  }}
+                  style={styles.profil}
                 />
-              </Item>
-              <Item regular picker style={styles.inputContainer}>
+                <View style={styles.profilButton}>
+                  <Button
+                    style={styles.button2}
+                    full
+                    rounded
+                    primary
+                    onPress={captureImage}>
+                    <Text style={styles.textStyle}>Camera</Text>
+                  </Button>
+                  <Button
+                    style={styles.button2}
+                    full
+                    rounded
+                    primary
+                    onPress={chooseFile}>
+                    <Text style={styles.textStyle}>File</Text>
+                  </Button>
+                </View>
+              </View>
+              <Text style={styles.profilText}>Alamat :</Text>
+              <Item regular picker error={Error} style={styles.inputContainer}>
                 <Picker
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
@@ -219,7 +236,7 @@ const Register = ({navigation}) => {
                   })}
                 </Picker>
               </Item>
-              <Item regular picker style={styles.inputContainer}>
+              <Item regular picker error={Error} style={styles.inputContainer}>
                 <Picker
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
@@ -233,7 +250,7 @@ const Register = ({navigation}) => {
                   })}
                 </Picker>
               </Item>
-              <Item regular picker style={styles.inputContainer}>
+              <Item regular picker error={Error} style={styles.inputContainer}>
                 <Picker
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
@@ -247,7 +264,7 @@ const Register = ({navigation}) => {
                   })}
                 </Picker>
               </Item>
-              <Item regular picker style={styles.inputContainer}>
+              <Item regular picker error={Error} style={styles.inputContainer}>
                 <Picker
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
@@ -261,7 +278,7 @@ const Register = ({navigation}) => {
                   })}
                 </Picker>
               </Item>
-              <Item regular style={styles.textAreaContainer}>
+              <Item regular error={Error} style={styles.textAreaContainer}>
                 <Textarea
                   rowSpan={5}
                   placeholder="Detail Alamat"
@@ -270,30 +287,10 @@ const Register = ({navigation}) => {
                   onChangeText={detailAlamat => setDetailAlamat(detailAlamat)}
                 />
               </Item>
-              <Item regular style={styles.inputContainer}>
-                <Input
-                  secureTextEntry={true}
-                  placeholder="Password"
-                  style={styles.input}
-                  value={Password}
-                  onChangeText={password => setPassword(password)}
-                />
-              </Item>
-              <Item regular style={styles.inputContainer}>
-                <Input
-                  secureTextEntry={true}
-                  placeholder="Repeat Password"
-                  style={styles.input}
-                  value={RepeatPassword}
-                  onChangeText={repeatPassword =>
-                    setRepeatPassword(repeatPassword)
-                  }
-                />
-              </Item>
             </View>
             <View style={styles.buttonContainer}>
-              <Button full rounded success onPress={createAccount}>
-                <Text>Register</Text>
+              <Button full rounded success onPress={next}>
+                <Text>Next</Text>
               </Button>
             </View>
             <View style={styles.buttonContainer}>
@@ -308,4 +305,4 @@ const Register = ({navigation}) => {
   );
 };
 
-export default Register;
+export default AddressRegister;

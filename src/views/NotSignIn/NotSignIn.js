@@ -6,6 +6,7 @@ import Home from './HomeScreen/Home';
 import Login from './LoginScreen/Login';
 import Register from './RegisterScreen/Register';
 import FaceRegister from './FaceRegisterScreen/FaceRegister';
+import AddressRegister from './AddressRegister/AddressRegister';
 
 const Stack = createStackNavigator();
 const NotSignIn = () => {
@@ -18,6 +19,7 @@ const NotSignIn = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="AddressRegister" component={AddressRegister} />
         <Stack.Screen name="FaceRegister" component={FaceRegister} />
       </Stack.Navigator>
     </NavigationContainer>
