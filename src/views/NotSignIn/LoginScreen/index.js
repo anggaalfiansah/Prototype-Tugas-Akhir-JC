@@ -42,6 +42,7 @@ const Login = ({navigation}) => {
       <View style={styles.form}>
         <Item regular style={styles.inputContainer}>
           <Input
+            keyboardType="number-pad"
             placeholder="NIK"
             style={styles.input}
             onChangeText={nik => setNIK(nik)}

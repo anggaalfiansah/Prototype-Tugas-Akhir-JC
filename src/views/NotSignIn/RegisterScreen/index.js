@@ -45,7 +45,7 @@ const Register = ({navigation}) => {
       } else if (Data.Password !== RepeatPassword) {
         Alert.alert('Password tidak sama');
       } else {
-        navigation.navigate('AddressRegister', Data);
+        navigation.navigate('Register2', Data);
       }
     }
   };

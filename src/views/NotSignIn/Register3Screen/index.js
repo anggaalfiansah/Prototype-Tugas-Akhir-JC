@@ -6,7 +6,7 @@ import WebView from 'react-native-webview';
 import {useDispatch} from 'react-redux';
 import storage from '../../../storage/storage';
 
-const FaceRegister = ({route}) => {
+const FaceRegister = ({route, navigation}) => {
   const data = route.params;
   const [FaceDescriptors, setFaceDescriptors] = useState();
   const [key, setkey] = useState(1);
@@ -61,7 +61,7 @@ const FaceRegister = ({route}) => {
           token: response.data,
         });
         Alert.alert('Pendaftaran berhasil');
-
+        navigation.navigate('Home');
       } catch (error) {
         console.log(error);
       }
