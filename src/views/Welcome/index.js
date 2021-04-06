@@ -11,6 +11,7 @@ import Register from '../NotSignIn/RegisterScreen';
 import Register2 from '../NotSignIn/Register2Screen';
 import Register3 from '../NotSignIn/Register3Screen';
 import HomeSignIn from '../SignIn/HomeScreen';
+import FormKunjungan from '../SignIn/FormKunjungan';
 
 const Stack = createStackNavigator();
 const Welcome = () => {
@@ -46,7 +47,7 @@ const Welcome = () => {
   useEffect(() => {
     login();
     console.log(Token);
-    if (Token) {
+    if (Token.token !== null && Token.userID !== null) {
       setisLogin(true);
     } else {
       setisLogin(false);
@@ -68,7 +69,8 @@ const Welcome = () => {
           </>
         ) : (
           <>
-            <Stack.Screen name="Home" component={HomeSignIn} />
+            <Stack.Screen name="HomeScreen" component={HomeSignIn} />
+            <Stack.Screen name="FormKunjungan" component={FormKunjungan} />
           </>
         )}
       </Stack.Navigator>

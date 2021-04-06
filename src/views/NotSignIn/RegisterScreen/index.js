@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import React, {useState} from 'react';
 import {View, Text, Button, Input, Item, Content, Container} from 'native-base';
 import {Alert} from 'react-native';

@@ -15,9 +15,29 @@ const styles = StyleSheet.create({
     marginBottom: 200,
   },
   buttonContainer: {
-    width: '80%',
-    height: 50,
+    width: '90%',
+    height: 75,
     marginVertical: 10,
+    backgroundColor: 'red',
+    borderRadius: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontFamily: 'DM Sans',
+    fontSize: 20,
+    fontWeight: '700',
   },
 });
 

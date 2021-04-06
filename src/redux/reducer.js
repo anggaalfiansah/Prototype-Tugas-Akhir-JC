@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 const dataToken = {
-  login:null,
+  login: {userID: null, token: null},
 };
 
 const tokenReducer = (state = dataToken, action) => {
@@ -20,7 +20,7 @@ const tokenReducer = (state = dataToken, action) => {
     case 'Logout':
       state = {
         ...state,
-        login: null,
+        login: {userID: null, token: null},
       };
       break;
     default:

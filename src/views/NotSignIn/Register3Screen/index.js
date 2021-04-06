@@ -61,7 +61,6 @@ const FaceRegister = ({route, navigation}) => {
           token: response.data,
         });
         Alert.alert('Pendaftaran berhasil');
-        navigation.navigate('Home');
       } catch (error) {
         console.log(error);
       }

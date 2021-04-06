@@ -1,13 +1,22 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {useDispatch} from 'react-redux';
+import storage from '../../../storage/storage';
 import styles from './styles';
 
-const TabHistory = () => {
+const TabHistory = ({navigation}) => {
+  const dispatch = useDispatch();
+  const logout = async () => {
+    await storage.remove({key: 'loginState'});
+    await dispatch({type: 'Logout'});
+  };
   return (
     <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.container}>
-      <Text>History</Text>
+      <TouchableOpacity style={styles.buttonContainer} onPress={logout}>
+        <Text style={styles.buttonText}>Logout</Text>
+      </TouchableOpacity>
     </LinearGradient>
   );
 };
