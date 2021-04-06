@@ -52,7 +52,7 @@ const Register = ({navigation}) => {
   return (
     <Container>
       <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
-        <Text style={styles.title}>Create an Account</Text>
+        <Text style={styles.title}>Buat Akun</Text>
         <Content>
           <View style={styles.container}>
             <View style={styles.form}>
@@ -148,12 +148,12 @@ const Register = ({navigation}) => {
             </View>
             <View style={styles.buttonContainer}>
               <Button full rounded success onPress={createAccount}>
-                <Text>Register</Text>
+                <Text>Daftar</Text>
               </Button>
             </View>
             <View style={styles.buttonContainer}>
               <Button full rounded light onPress={() => navigation.goBack()}>
-                <Text>Cancel</Text>
+                <Text>Batal</Text>
               </Button>
             </View>
           </View>

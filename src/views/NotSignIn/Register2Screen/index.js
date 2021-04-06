@@ -290,12 +290,12 @@ const AddressRegister = ({route, navigation}) => {
             </View>
             <View style={styles.buttonContainer}>
               <Button full rounded success onPress={next}>
-                <Text>Next</Text>
+                <Text>Selanjutnya</Text>
               </Button>
             </View>
             <View style={styles.buttonContainer}>
               <Button full rounded light onPress={() => navigation.goBack()}>
-                <Text>Back</Text>
+                <Text>Sebelumnya</Text>
               </Button>
             </View>
           </View>
