@@ -38,8 +38,9 @@ const Login = ({navigation}) => {
   };
   return (
     <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.container}>
-      <Text style={styles.title}>Visitor Access Control</Text>
       <View style={styles.form}>
+        <Text style={styles.title}>MASUK</Text>
+
         <Item regular style={styles.inputContainer}>
           <Input
             keyboardType="number-pad"
@@ -58,13 +59,16 @@ const Login = ({navigation}) => {
         </Item>
       </View>
       <View style={styles.buttonContainer}>
-        <Button full rounded success onPress={login}>
-          <Text>Login</Text>
+        <Button style={styles.button} full rounded success onPress={login}>
+          <Text>Masuk</Text>
         </Button>
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button full rounded light onPress={() => navigation.goBack()}>
-          <Text>Back</Text>
+        <Button
+          style={styles.button}
+          full
+          rounded
+          light
+          onPress={() => navigation.goBack()}>
+          <Text>Batal</Text>
         </Button>
       </View>
     </LinearGradient>

@@ -16,18 +16,19 @@ const styles = StyleSheet.create({
     fontFamily: 'DM Sans',
     fontWeight: '700',
     fontSize: 34,
-    marginBottom: 20,
+    color: '#ffffff',
+    marginVertical: 20,
   },
   form: {
-    marginBottom: 10,
+    marginBottom: 150,
   },
   inputContainer: {
     width: '90%',
     height: 50,
     marginVertical: 10,
     borderRadius: 20,
-    borderColor: '#828282',
     paddingHorizontal: 10,
+    backgroundColor: '#ffffff',
   },
   inputContainerDanger: {
     width: '90%',
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: 'red',
     paddingHorizontal: 10,
+    backgroundColor: '#ffffff',
   },
   dateInput: {
     width: '100%',
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: '#828282',
     paddingHorizontal: 10,
+    backgroundColor: '#ffffff',
   },
   textArea: {
     width: '100%',

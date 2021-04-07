@@ -12,14 +12,18 @@ import Register2 from '../NotSignIn/Register2Screen';
 import Register3 from '../NotSignIn/Register3Screen';
 import HomeSignIn from '../SignIn/HomeScreen';
 import FormKunjungan from '../SignIn/FormKunjungan';
+import History from '../SignIn/HistoryScreen';
+import HistoryKunjungan from '../SignIn/HistoryKunjungan';
+import HistorySkrining from '../SignIn/HistorySkrining';
+import FormSkrining from '../SignIn/FormSkrining';
 
 const Stack = createStackNavigator();
 const Welcome = () => {
-  const Token = useSelector(state => state.login);
+  const dataLogin = useSelector(state => state.login);
   const [isLogin, setisLogin] = useState(false);
 
   const dispatch = useDispatch();
-  const login = async () => {
+  const Checklogin = async () => {
     await storage
       .load({
         key: 'loginState',
@@ -45,14 +49,15 @@ const Welcome = () => {
   };
 
   useEffect(() => {
-    login();
-    console.log(Token);
-    if (Token.token !== null && Token.userID !== null) {
+    Checklogin();
+    console.log(dataLogin);
+    if (dataLogin.token !== null && dataLogin.userID !== null) {
       setisLogin(true);
     } else {
       setisLogin(false);
     }
-  }, [Token]);
+  }, [dataLogin]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -70,7 +75,11 @@ const Welcome = () => {
         ) : (
           <>
             <Stack.Screen name="HomeScreen" component={HomeSignIn} />
+            <Stack.Screen name="HistoryScreen" component={History} />
+            <Stack.Screen name="HistoryKunjungan" component={HistoryKunjungan} />
+            <Stack.Screen name="HistorySkrining" component={HistorySkrining} />
             <Stack.Screen name="FormKunjungan" component={FormKunjungan} />
+            <Stack.Screen name="FormSkrining" component={FormSkrining} />
           </>
         )}
       </Stack.Navigator>

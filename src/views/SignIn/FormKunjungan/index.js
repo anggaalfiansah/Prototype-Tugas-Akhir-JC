@@ -62,7 +62,7 @@ const FormKunjungan = ({route, navigation}) => {
   return (
     <Container>
       <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
-        <Text style={styles.title}>Form Kunjungan</Text>
+        <Text style={styles.title}>FORM KUNJUNGAN</Text>
         <Content>
           <View style={styles.container}>
             <View style={styles.form}>

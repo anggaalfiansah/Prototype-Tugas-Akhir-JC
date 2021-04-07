@@ -183,18 +183,17 @@ const AddressRegister = ({route, navigation}) => {
       Alert.alert('Harap Isi semua Data');
       setError(true);
     } else {
-      navigation.navigate('FaceRegister', data);
+      navigation.navigate('Register3', data);
     }
   };
 
   return (
     <Container>
       <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
-        {/* <Text style={styles.title}>Create an Account</Text> */}
         <Content>
           <View style={styles.container}>
             <View tyle={styles.form}>
-              <Text style={styles.profilText}>Foto Profil :</Text>
+              <Text style={styles.profilText}>FOTO PROFIL :</Text>
               <View style={styles.profilContainer}>
                 <Image
                   source={{
@@ -221,7 +220,7 @@ const AddressRegister = ({route, navigation}) => {
                   </Button>
                 </View>
               </View>
-              <Text style={styles.profilText}>Alamat :</Text>
+              <Text style={styles.profilText}>ALAMAT :</Text>
               <Item regular picker error={Error} style={styles.inputContainer}>
                 <Picker
                   mode="dropdown"

@@ -7,23 +7,23 @@ import styles from './styles';
 const Home = ({navigation}) => {
   return (
     <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.container}>
-      <Text style={styles.title}>Visitor Access Control</Text>
+      <Text style={styles.title}>VISITOR ACCESS CONTROL</Text>
       <View style={styles.buttonContainer}>
         <Button
+          style={styles.button}
           full
           rounded
           success
           onPress={() => navigation.navigate('Login')}>
-          <Text>Login</Text>
+          <Text>Masuk</Text>
         </Button>
-      </View>
-      <View style={styles.buttonContainer}>
         <Button
+          style={styles.button}
           full
           rounded
           success
           onPress={() => navigation.navigate('Register')}>
-          <Text>Register</Text>
+          <Text>Buat Akun</Text>
         </Button>
       </View>
     </LinearGradient>

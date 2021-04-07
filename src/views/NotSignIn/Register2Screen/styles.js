@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
     fontFamily: 'DM Sans',
     fontWeight: '700',
     fontSize: 34,
-    marginBottom: 10,
+    color: '#ffffff',
+    marginVertical: 20,
   },
   form: {
     marginVertical: 10,
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 20,
     paddingHorizontal: 10,
+    backgroundColor: '#ffffff',
   },
   inputContainerDanger: {
     width: '90%',
@@ -36,6 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: 'red',
     paddingHorizontal: 10,
+    backgroundColor: '#ffffff',
   },
   input: {
     borderRadius: 20,
@@ -46,6 +49,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 20,
     paddingHorizontal: 10,
+    backgroundColor: '#ffffff',
   },
   textArea: {
     width: '100%',
@@ -76,6 +80,8 @@ const styles = StyleSheet.create({
     height: 225,
     borderWidth: 1,
     borderColor: 'gray',
+    borderRadius:10,
+    backgroundColor: '#ffffff',
   },
   profilButton: {
     width: '45%',

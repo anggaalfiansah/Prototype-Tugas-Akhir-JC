@@ -52,7 +52,7 @@ const Register = ({navigation}) => {
   return (
     <Container>
       <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
-        <Text style={styles.title}>Buat Akun</Text>
+        <Text style={styles.title}>BUAT AKUN</Text>
         <Content>
           <View style={styles.container}>
             <View style={styles.form}>

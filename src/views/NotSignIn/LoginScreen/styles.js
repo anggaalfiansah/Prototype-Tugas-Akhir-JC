@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   title: {
@@ -13,18 +13,16 @@ const styles = StyleSheet.create({
     fontFamily: 'DM Sans',
     fontWeight: '700',
     fontSize: 34,
-    marginBottom: 50,
-  },
-  form: {
-    marginBottom: 350,
+    color: '#ffffff',
+    marginVertical: 20,
   },
   inputContainer: {
     width: '80%',
     height: 50,
     marginVertical: 10,
     borderRadius: 20,
-    borderColor: '#828282',
     paddingHorizontal: 10,
+    backgroundColor: '#ffffff',
   },
   input: {
     borderRadius: 20,
@@ -33,6 +31,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: '80%',
     height: 50,
+    marginVertical: 10,
+  },
+  button: {
     marginVertical: 10,
   },
 });

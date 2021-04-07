@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 20,
   },
   title: {
     textAlign: 'center',
@@ -19,39 +20,37 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     marginVertical: 20,
   },
-  form: {
-    marginBottom: 250,
-  },
-  inputContainer: {
-    width: '90%',
-    height: 50,
-    marginVertical: 10,
-    borderRadius: 20,
-    borderColor: '#828282',
-    paddingHorizontal: 10,
-    backgroundColor: '#ffffff',
-  },
-  dateInput: {
-    width: '100%',
-    borderRadius: 20,
-    fontSize: 17,
-  },
-  textAreaContainer: {
-    width: '90%',
-    marginVertical: 10,
-    borderRadius: 20,
-    borderColor: '#828282',
-    paddingHorizontal: 10,
-    backgroundColor: '#ffffff',
-  },
-  textArea: {
-    width: '100%',
-    borderRadius: 20,
-    fontSize: 17,
-  },
   buttonContainer: {
-    width: '90%',
+    width: '95%',
     height: 50,
+    marginVertical: 10,
+  },
+  form: {
+    width: '95%',
+  },
+  listItemContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'flex-start',
+    alignItems: 'flex-start',
+    backgroundColor: '#ffffff',
+    padding: 10,
+    marginBottom: 20,
+    width: '100%',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+
+    elevation: 8,
+  },
+  soal: {
+    textAlign: 'left',
+    textAlignVertical: 'auto',
     marginVertical: 10,
   },
 });

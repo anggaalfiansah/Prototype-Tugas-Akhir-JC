@@ -6,7 +6,7 @@ import {useDispatch} from 'react-redux';
 import storage from '../../../storage/storage';
 import styles from './styles';
 
-const TabHistory = ({navigation}) => {
+const TabProfil = ({navigation}) => {
   const dispatch = useDispatch();
   const logout = async () => {
     await storage.remove({key: 'loginState'});
@@ -15,10 +15,10 @@ const TabHistory = ({navigation}) => {
   return (
     <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.container}>
       <TouchableOpacity style={styles.buttonContainer} onPress={logout}>
-        <Text style={styles.buttonText}>Logout</Text>
+        <Text style={styles.buttonText}>LOGOUT</Text>
       </TouchableOpacity>
     </LinearGradient>
   );
 };
 
-export default TabHistory;
+export default TabProfil;

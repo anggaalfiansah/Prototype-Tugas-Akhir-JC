@@ -3,7 +3,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TabHome from '../TabHome';
-import TabHistory from '../TabHistory';
+import TabProfil from '../TabProfil';
 
 const Tab = createBottomTabNavigator();
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
         inactiveTintColor: 'gray',
       }}>
       <Tab.Screen name="Home" component={TabHome} />
-      <Tab.Screen name="Profile" component={TabHistory} />
+      <Tab.Screen name="Profile" component={TabProfil} />
     </Tab.Navigator>
   );
 };

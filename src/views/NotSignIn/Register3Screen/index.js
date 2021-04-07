@@ -1,10 +1,12 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
+import {Spinner, View} from 'native-base';
 import React, {useState} from 'react';
 import {Alert} from 'react-native';
 import WebView from 'react-native-webview';
 import {useDispatch} from 'react-redux';
 import storage from '../../../storage/storage';
+import styles from './styles';
 
 const FaceRegister = ({route, navigation}) => {
   const data = route.params;
@@ -92,6 +94,12 @@ const FaceRegister = ({route, navigation}) => {
       source={{uri: 'https://face-recoginition-web.herokuapp.com/'}}
       injectedJavaScript={runFirst}
       key={key}
+      startInLoadingState={true}
+      renderLoading={() => (
+        <View style={styles.loading}>
+          <Spinner color="blue" />
+        </View>
+      )}
       onNavigationStateChange={setWebViewUrlChanged}
     />
   );
