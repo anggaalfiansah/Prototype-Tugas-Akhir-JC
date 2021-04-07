@@ -5,13 +5,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: 30,
   },
   title: {
     fontFamily: 'DM Sans',
     fontWeight: '700',
-    fontSize: 34,
+    fontSize: 24,
     color: '#ffffff',
     marginVertical: 20,
   },

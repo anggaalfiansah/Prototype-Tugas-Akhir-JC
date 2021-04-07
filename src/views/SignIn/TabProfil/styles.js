@@ -5,25 +5,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: 30,
   },
-  title:{
+  title: {
     fontFamily: 'DM Sans',
     fontWeight: '700',
     fontSize: 34,
-    marginBottom: 200,
+    color: '#ffffff',
+    marginVertical: 20,
   },
   buttonContainer: {
     width: '90%',
-    height: 75,
-    marginVertical: 10,
-    backgroundColor: 'red',
-    borderRadius: 40,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
+  },
+  button: {
+    alignSelf: 'center',
+    width: '50%',
+    marginVertical: 10,
+    borderRadius: 40,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -34,10 +38,30 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   buttonText: {
+    textAlign: 'center',
     color: '#ffffff',
     fontFamily: 'DM Sans',
     fontSize: 20,
     fontWeight: '700',
+  },
+  profil: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  fotoProfil: {
+    alignSelf: 'center',
+    height: 200,
+    width: 200,
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: '#ffffff',
+  },
+  namaProfil: {
+    fontSize: 30,
+    fontWeight: '700',
+    color: '#ffffff',
+    textAlign: 'center',
   },
 });
 

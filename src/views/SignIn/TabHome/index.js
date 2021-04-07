@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
-import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {View, Text, Button} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
+import axios from 'axios';
 
 const TabHome = ({navigation}) => {
   const dataLogin = useSelector(state => state.login);
@@ -34,9 +34,10 @@ const TabHome = ({navigation}) => {
     getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataLogin]);
+
   return (
     <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.container}>
-      <Text style={styles.title}>Welcome, {Nama}</Text>
+      <Text style={styles.title}>Selamat datang, {Nama}</Text>
       <View style={styles.buttonContainer}>
         <Button full rounded
           style={styles.button}

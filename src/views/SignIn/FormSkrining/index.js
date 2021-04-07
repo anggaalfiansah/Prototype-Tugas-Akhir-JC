@@ -24,6 +24,7 @@ const FormSkrining = ({route, navigation}) => {
   const [Score4, setScore4] = useState(null);
   const [Score5, setScore5] = useState(null);
   const [Score6, setScore6] = useState(null);
+  const [Score7, setScore7] = useState(null);
 
   const getScore = () => {
     if (
@@ -32,7 +33,8 @@ const FormSkrining = ({route, navigation}) => {
       Score3 == null ||
       Score4 == null ||
       Score5 == null ||
-      Score6 == null
+      Score6 == null ||
+      Score7 == null
     ) {
       Alert.alert('Isi semua pertanyaan !!!');
     } else {
@@ -80,8 +82,8 @@ const FormSkrining = ({route, navigation}) => {
       Alert.alert(response.data.message);
       navigation.navigate('Home');
     } catch (err) {
-        Alert.alert(err.message);
-        navigation.navigate('Home');
+      Alert.alert(err.message);
+      navigation.navigate('Home');
     }
   };
   return (
@@ -183,8 +185,7 @@ const FormSkrining = ({route, navigation}) => {
               </View>
               <View style={styles.listItemContainer}>
                 <Text style={styles.soal}>
-                  6. Apakah pernah mengalami demam/batuk/pilek/sakit
-                  tenggorokan/sesak dalam 14 hari terakhir?
+                  6. Apakah anda sedang mengalami demam lebih dari 38 °C ?
                 </Text>
                 <RadioForm
                   radio_props={radio2}
@@ -197,6 +198,24 @@ const FormSkrining = ({route, navigation}) => {
                   buttonOuterSize={30}
                   animation={true}
                   onPress={value => setScore6(value)}
+                />
+              </View>
+              <View style={styles.listItemContainer}>
+                <Text style={styles.soal}>
+                  7. Apakah pernah mengalami batuk/pilek/sakit tenggorokan/sesak
+                  dalam 14 hari terakhir?
+                </Text>
+                <RadioForm
+                  radio_props={radio2}
+                  initial={-1}
+                  formHorizontal={false}
+                  labelHorizontal={true}
+                  buttonColor={'gray'}
+                  selectedButtonColor={'gray'}
+                  buttonSize={15}
+                  buttonOuterSize={30}
+                  animation={true}
+                  onPress={value => setScore7(value)}
                 />
               </View>
             </List>
