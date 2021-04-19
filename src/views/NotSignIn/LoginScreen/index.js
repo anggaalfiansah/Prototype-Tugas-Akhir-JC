@@ -37,7 +37,7 @@ const Login = ({navigation}) => {
     }
   };
   return (
-    <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.container}>
+    <LinearGradient colors={['#deaaff', '#FFFFFF']} style={styles.container}>
       <View style={styles.form}>
         <Text style={styles.title}>MASUK</Text>
 
@@ -59,14 +59,13 @@ const Login = ({navigation}) => {
         </Item>
       </View>
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} full rounded success onPress={login}>
+        <Button style={styles.button} full rounded onPress={login}>
           <Text>Masuk</Text>
         </Button>
         <Button
-          style={styles.button}
+          style={styles.button2}
           full
           rounded
-          light
           onPress={() => navigation.goBack()}>
           <Text>Batal</Text>
         </Button>

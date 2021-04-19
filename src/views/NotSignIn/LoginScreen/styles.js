@@ -34,6 +34,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   button: {
+    backgroundColor: '#e597ff',
+    marginVertical: 10,
+  },
+  button2: {
+    backgroundColor: '#d0d1ff',
     marginVertical: 10,
   },
 });

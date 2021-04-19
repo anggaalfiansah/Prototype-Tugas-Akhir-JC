@@ -16,7 +16,8 @@ import styles from './styles';
 import axios from 'axios';
 
 const FormKunjungan = ({route, navigation}) => {
-  const User = route.params;
+  const Data = route.params;
+  console.log(Data);
   const [TanggalKunjungan, setTanggalKunjungan] = useState();
   const [Keterangan, setKeterangan] = useState();
   const url = 'https://services-tugas-akhir-jc.herokuapp.com';
@@ -41,8 +42,10 @@ const FormKunjungan = ({route, navigation}) => {
     const Bulan = bulan[time.getMonth()];
     const Tahun = time.getFullYear();
     const data = {
-      UserID: User._id,
-      Nama: User.Nama,
+      UserID: Data.UserID,
+      Nama: Data.Nama,
+      ScoreSkrining: Data.Score,
+      HasilSkrining : Data.HasilTest,
       Tanggal,
       Bulan,
       Tahun,
@@ -53,7 +56,7 @@ const FormKunjungan = ({route, navigation}) => {
       const kunjungan = await axios.post(`${url}/attendance/`, data);
       console.log(kunjungan);
       Alert.alert(kunjungan.data.message);
-      navigation.navigate('Home');
+      navigation.navigate('FormUploadBukti', kunjungan.data.data._id);
     } catch (err) {
       console.log(err.message);
       Alert.alert(err.message);
@@ -61,7 +64,7 @@ const FormKunjungan = ({route, navigation}) => {
   };
   return (
     <Container>
-      <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
+      <LinearGradient colors={['#deaaff', '#FFFFFF']} style={styles.background}>
         <Text style={styles.title}>FORM KUNJUNGAN</Text>
         <Content>
           <View style={styles.container}>
@@ -112,12 +115,12 @@ const FormKunjungan = ({route, navigation}) => {
               </Item>
             </View>
             <View style={styles.buttonContainer}>
-              <Button full rounded success onPress={ajukan}>
+              <Button full rounded style={styles.button} onPress={ajukan}>
                 <Text>Ajukan</Text>
               </Button>
             </View>
             <View style={styles.buttonContainer}>
-              <Button full rounded light onPress={() => navigation.goBack()}>
+              <Button full rounded style={styles.button2} onPress={() => navigation.goBack()}>
                 <Text>Batal</Text>
               </Button>
             </View>

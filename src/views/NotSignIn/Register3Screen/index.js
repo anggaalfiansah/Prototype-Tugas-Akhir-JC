@@ -13,6 +13,7 @@ const FaceRegister = ({route, navigation}) => {
   const [FaceDescriptors, setFaceDescriptors] = useState();
   const [key, setkey] = useState(1);
   const [isWebViewUrlChanged, setisWebViewUrlChanged] = useState(false);
+  const [Loading, setLoading] = useState(false);
   const url = 'https://services-tugas-akhir-jc.herokuapp.com';
 
   const dispatch = useDispatch();
@@ -21,11 +22,13 @@ const FaceRegister = ({route, navigation}) => {
     const face = e.nativeEvent.data;
     console.log(face);
     if (face === 'Verifikasi Berhasil') {
+      setLoading(true);
       try {
         const formData = new FormData();
         formData.append('NIK', data.NIK);
         formData.append('Nama', data.Nama);
         formData.append('Email', data.Email);
+        formData.append('Telpon', data.NoHP);
         formData.append('TempatLahir', data.TempatLahir);
         formData.append(
           'TanggalLahir',
@@ -56,13 +59,21 @@ const FaceRegister = ({route, navigation}) => {
           formData,
           config,
         );
-
-        await storage.save({key: 'loginState', data: response.data});
-        dispatch({
-          type: 'Login',
-          token: response.data,
-        });
-        Alert.alert('Pendaftaran berhasil');
+        if (response.data.message === 'NIK/Email Sudah Terdaftar') {
+          Alert.alert(
+            response.data.message,
+            'NIK/Email sudah terdaftar di akun lain',
+          );
+          navigation.navigate('Welcome');
+        } else {
+          await storage.save({key: 'loginState', data: response.data});
+          dispatch({
+            type: 'Login',
+            token: response.data,
+          });
+          Alert.alert(response.data.message, 'Anda akan di arahkan ke home');
+          setLoading(true);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -87,21 +98,31 @@ const FaceRegister = ({route, navigation}) => {
   const runFirst = `document.getElementById("nama-wajah").value = "${data.Nama}"`;
 
   return (
-    <WebView
-      mediaPlaybackRequiresUserAction={false}
-      javaScriptEnabledAndroid={true}
-      onMessage={onMessage}
-      source={{uri: 'https://face-recoginition-web.herokuapp.com/'}}
-      injectedJavaScript={runFirst}
-      key={key}
-      startInLoadingState={true}
-      renderLoading={() => (
+    <View style={styles.container}>
+      {!Loading ? (
+        <WebView
+          mediaPlaybackRequiresUserAction={false}
+          javaScriptEnabledAndroid={true}
+          onMessage={onMessage}
+          source={{uri: 'https://face-recoginition-web.herokuapp.com/'}}
+          injectedJavaScript={runFirst}
+          key={key}
+          startInLoadingState={true}
+          renderLoading={() => {
+            return (
+              <View style={styles.loading}>
+                <Spinner color="blue" />
+              </View>
+            );
+          }}
+          onNavigationStateChange={setWebViewUrlChanged}
+        />
+      ) : (
         <View style={styles.loading}>
           <Spinner color="blue" />
         </View>
       )}
-      onNavigationStateChange={setWebViewUrlChanged}
-    />
+    </View>
   );
 };
 export default FaceRegister;

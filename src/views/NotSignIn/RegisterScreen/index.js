@@ -10,6 +10,7 @@ const Register = ({navigation}) => {
   const [NIK, setNIK] = useState();
   const [Nama, setNama] = useState();
   const [Email, setEmail] = useState();
+  const [NoHP, setNoHP] = useState();
   const [TempatLahir, setTempatLahir] = useState();
   const [TanggalLahir, setTanggalLahir] = useState();
   // State Password & Validasinya
@@ -22,6 +23,7 @@ const Register = ({navigation}) => {
       NIK,
       Nama,
       Email,
+      NoHP,
       TempatLahir,
       TanggalLahir,
       Password,
@@ -31,6 +33,7 @@ const Register = ({navigation}) => {
       !Data.NIK ||
       !Data.Nama ||
       !Data.Email ||
+      !Data.NoHP ||
       !Data.TempatLahir ||
       !Data.Password
     ) {
@@ -51,7 +54,7 @@ const Register = ({navigation}) => {
 
   return (
     <Container>
-      <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
+      <LinearGradient colors={['#deaaff', '#FFFFFF']} style={styles.background}>
         <Text style={styles.title}>BUAT AKUN</Text>
         <Content>
           <View style={styles.container}>
@@ -80,6 +83,15 @@ const Register = ({navigation}) => {
                   style={styles.input}
                   value={Email}
                   onChangeText={email => setEmail(email)}
+                />
+              </Item>
+              <Item regular style={InputStyle}>
+                <Input
+                  keyboardType="number-pad"
+                  placeholder="Nomor Ponsel"
+                  style={styles.input}
+                  value={NoHP}
+                  onChangeText={hp => setNoHP(hp)}
                 />
               </Item>
               <Item regular style={InputStyle}>
@@ -147,12 +159,12 @@ const Register = ({navigation}) => {
               </Item>
             </View>
             <View style={styles.buttonContainer}>
-              <Button full rounded success onPress={createAccount}>
+              <Button style={styles.button} full rounded onPress={createAccount}>
                 <Text>Daftar</Text>
               </Button>
             </View>
             <View style={styles.buttonContainer}>
-              <Button full rounded light onPress={() => navigation.goBack()}>
+              <Button style={styles.button2} full rounded onPress={() => navigation.goBack()}>
                 <Text>Batal</Text>
               </Button>
             </View>

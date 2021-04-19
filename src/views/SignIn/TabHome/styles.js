@@ -25,9 +25,22 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '100%',
-    height: 75,
     marginVertical: 10,
-    backgroundColor: '#4A8EDE',
+    backgroundColor: '#e597ff',
+    borderRadius: 40,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  button2: {
+    width: '100%',
+    marginVertical: 10,
+    backgroundColor: '#d0d1ff',
     borderRadius: 40,
     shadowColor: '#000',
     shadowOffset: {
@@ -39,11 +52,16 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   buttonText: {
-    textAlign:'center',
+    textAlign: 'center',
     color: '#ffffff',
     fontFamily: 'DM Sans',
     fontSize: 20,
     fontWeight: '700',
+  },
+  gambar: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'center',
   },
 });
 

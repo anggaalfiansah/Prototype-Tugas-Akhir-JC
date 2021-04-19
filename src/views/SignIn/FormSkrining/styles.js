@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'DM Sans',
     fontWeight: '700',
-    fontSize: 34,
+    fontSize: 24,
     color: '#ffffff',
     marginVertical: 20,
   },
@@ -24,6 +24,12 @@ const styles = StyleSheet.create({
     width: '95%',
     height: 50,
     marginVertical: 10,
+  },
+  button: {
+    backgroundColor: '#e597ff',
+  },
+  button2: {
+    backgroundColor: '#d0d1ff',
   },
   form: {
     width: '95%',

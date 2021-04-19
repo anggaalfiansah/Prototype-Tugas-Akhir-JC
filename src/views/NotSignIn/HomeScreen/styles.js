@@ -16,12 +16,16 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     marginVertical: 20,
   },
+  gambar: {
+    width: '70%',
+    resizeMode: 'center',
+  },
   buttonContainer: {
     width: '80%',
-    height: 50,
     marginVertical: 10,
   },
   button: {
+    backgroundColor: '#e597ff',
     marginVertical: 10,
   },
 });

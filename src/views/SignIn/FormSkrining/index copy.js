@@ -4,10 +4,12 @@ import {View, Text, Button, Content, Container, List} from 'native-base';
 import {Alert} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
+import axios from 'axios';
 import RadioForm from 'react-native-simple-radio-button';
 
 const FormSkrining = ({route, navigation}) => {
   const User = route.params;
+  const url = 'https://services-tugas-akhir-jc.herokuapp.com';
   const radio1 = [
     {label: 'YA', value: 1},
     {label: 'TIDAK', value: 0},
@@ -36,38 +38,58 @@ const FormSkrining = ({route, navigation}) => {
     ) {
       Alert.alert('Isi semua pertanyaan !!!');
     } else {
-      const score = Score1 + Score2 + Score3 + Score4 + Score5 + Score6 + Score7;
-      if (score <= 5) {
-        console.log(score);
+      const score = Score1 + Score2 + Score3 + Score4 + Score5 + Score6;
+      if (score === 0) {
         sendData(score, 'Resiko Rendah');
+      } else if (score <= 5) {
+        sendData(score, 'Resiko Sedang');
       } else {
-        console.log(score);
         sendData(score, 'Resiko Besar');
       }
     }
   };
 
   const sendData = async (Score, HasilTest) => {
+    const time = new Date();
+    const Tanggal = ('0' + time.getDate()).slice(-2);
+    const bulan = [
+      'Januari',
+      'Februari',
+      'Maret',
+      'April',
+      'Mei',
+      'Juni',
+      'Juli',
+      'Agustus',
+      'September',
+      'Oktober',
+      'November',
+      'Desember',
+    ];
+    const Bulan = bulan[time.getMonth()];
+    const Tahun = time.getFullYear();
     const data = {
       UserID: User._id,
       Nama: User.Nama,
       Score,
       HasilTest,
+      Tanggal,
+      Bulan,
+      Tahun,
     };
-    if (HasilTest === 'Resiko Rendah') {
-      navigation.navigate('FormKunjungan', data);
-    } else {
-      Alert.alert(
-        `Anda memiliki ${HasilTest}`,
-        'Berdasarkan hasil test, anda memiliki resiko besar. Silahkan dirumah saja sampai keadaan anda membaik',
-      );
+    try {
+      const response = await axios.post(`${url}/skrining`, data);
+      Alert.alert(response.data.message);
+      navigation.navigate('Home');
+    } catch (err) {
+      Alert.alert(err.message);
       navigation.navigate('Home');
     }
   };
   return (
     <Container>
-      <LinearGradient colors={['#deaaff', '#FFFFFF']} style={styles.background}>
-        <Text style={styles.title}>SILAHKAN DIISI TERLEBIH DAHULU</Text>
+      <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
+        <Text style={styles.title}>FORM SKRINING MANDIRI</Text>
         <Content>
           <View style={styles.container}>
             <List style={styles.form}>
@@ -198,12 +220,12 @@ const FormSkrining = ({route, navigation}) => {
               </View>
             </List>
             <View style={styles.buttonContainer}>
-              <Button full rounded style={styles.button} onPress={getScore}>
-                <Text>Ajukan</Text>
+              <Button full rounded success onPress={getScore}>
+                <Text>Submit</Text>
               </Button>
             </View>
             <View style={styles.buttonContainer}>
-              <Button full rounded style={styles.button2} onPress={() => navigation.goBack()}>
+              <Button full rounded light onPress={() => navigation.goBack()}>
                 <Text>Batal</Text>
               </Button>
             </View>

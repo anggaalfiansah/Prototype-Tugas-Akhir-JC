@@ -13,9 +13,8 @@ import Register3 from '../NotSignIn/Register3Screen';
 import HomeSignIn from '../SignIn/HomeScreen';
 import FormKunjungan from '../SignIn/FormKunjungan';
 import History from '../SignIn/HistoryScreen';
-import HistoryKunjungan from '../SignIn/HistoryKunjungan';
-import HistorySkrining from '../SignIn/HistorySkrining';
 import FormSkrining from '../SignIn/FormSkrining';
+import FormUploadBukti from '../SignIn/FormUploadBukti';
 
 const Stack = createStackNavigator();
 const Welcome = () => {
@@ -76,10 +75,9 @@ const Welcome = () => {
           <>
             <Stack.Screen name="HomeScreen" component={HomeSignIn} />
             <Stack.Screen name="HistoryScreen" component={History} />
-            <Stack.Screen name="HistoryKunjungan" component={HistoryKunjungan} />
-            <Stack.Screen name="HistorySkrining" component={HistorySkrining} />
             <Stack.Screen name="FormKunjungan" component={FormKunjungan} />
             <Stack.Screen name="FormSkrining" component={FormSkrining} />
+            <Stack.Screen name="FormUploadBukti" component={FormUploadBukti} />
           </>
         )}
       </Stack.Navigator>

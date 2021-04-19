@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import {Container, Content, List, ListItem} from 'native-base';
@@ -44,7 +44,7 @@ const HistoryKunjungan = () => {
   }, []);
   return (
     <Container>
-      <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.container}>
+      <LinearGradient colors={['#deaaff', '#FFFFFF']} style={styles.container}>
         <Text style={styles.title}>HISTORY KUNJUNGAN</Text>
         <Content>
           <List>
@@ -61,10 +61,9 @@ const HistoryKunjungan = () => {
                     <Text style={styles.cardKeterangan}>
                       Keperluan  : {item.Keterangan}
                     </Text>
-                    <Text
-                      style={
-                        styles.cardTanggal
-                      }>{`${item.Tanggal}-${item.Bulan}-${item.Tahun}`}</Text>
+                    <Text style={styles.cardTanggal}>
+                      {`${item.Tanggal}-${item.Bulan}-${item.Tahun}`}
+                    </Text>
                   </View>
                 </ListItem>
               );

@@ -189,21 +189,31 @@ const AddressRegister = ({route, navigation}) => {
 
   return (
     <Container>
-      <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.background}>
+      <LinearGradient colors={['#deaaff', '#FFFFFF']} style={styles.background}>
         <Content>
           <View style={styles.container}>
             <View tyle={styles.form}>
               <Text style={styles.profilText}>FOTO PROFIL :</Text>
               <View style={styles.profilContainer}>
-                <Image
-                  source={{
-                    uri: FotoProfil,
-                  }}
-                  style={styles.profil}
-                />
+                {FotoProfil !==
+                'https://img.icons8.com/ios-glyphs/100/000000/camera.png' ? (
+                  <Image
+                    source={{
+                      uri: FotoProfil,
+                    }}
+                    style={styles.profil2}
+                  />
+                ) : (
+                  <Image
+                    source={{
+                      uri: FotoProfil,
+                    }}
+                    style={styles.profil}
+                  />
+                )}
                 <View style={styles.profilButton}>
                   <Button
-                    style={styles.button2}
+                    style={styles.buttonCamera}
                     full
                     rounded
                     primary
@@ -211,7 +221,7 @@ const AddressRegister = ({route, navigation}) => {
                     <Text style={styles.textStyle}>Camera</Text>
                   </Button>
                   <Button
-                    style={styles.button2}
+                    style={styles.buttonCamera}
                     full
                     rounded
                     primary
@@ -288,12 +298,16 @@ const AddressRegister = ({route, navigation}) => {
               </Item>
             </View>
             <View style={styles.buttonContainer}>
-              <Button full rounded success onPress={next}>
+              <Button style={styles.button} full rounded onPress={next}>
                 <Text>Selanjutnya</Text>
               </Button>
             </View>
             <View style={styles.buttonContainer}>
-              <Button full rounded light onPress={() => navigation.goBack()}>
+              <Button
+                style={styles.button2}
+                full
+                rounded
+                onPress={() => navigation.goBack()}>
                 <Text>Sebelumnya</Text>
               </Button>
             </View>

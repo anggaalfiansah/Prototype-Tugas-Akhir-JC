@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {View, Text, Button} from 'native-base';
+import {View, Text, Button, Spinner} from 'native-base';
 import {Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch} from 'react-redux';
@@ -13,6 +13,7 @@ const TabProfil = ({navigation}) => {
   const dataLogin = useSelector(state => state.login);
   const [Nama, setNama] = useState();
   const [FotoProfil, setFotoProfil] = useState();
+  const [Loading, setLoading] = useState(false);
 
   const url = 'https://services-tugas-akhir-jc.herokuapp.com';
   const config = {
@@ -25,6 +26,7 @@ const TabProfil = ({navigation}) => {
   };
 
   const getUserData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         `${url}/users/${dataLogin.userID}`,
@@ -33,6 +35,7 @@ const TabProfil = ({navigation}) => {
       console.log(response);
       await setNama(response.data.data.Nama);
       await setFotoProfil(`${url}/${response.data.data.FotoProfil}`);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -44,16 +47,24 @@ const TabProfil = ({navigation}) => {
   }, [dataLogin]);
 
   return (
-    <LinearGradient colors={['#4A8EDE', '#FFFFFF']} style={styles.container}>
-      <View style={styles.profile}>
-        <Image source={{uri: FotoProfil}} style={styles.fotoProfil} />
-        <Text style={styles.namaProfil}>{Nama}</Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button full rounded danger style={styles.button} onPress={logout}>
-          <Text style={styles.buttonText}>LOGOUT</Text>
-        </Button>
-      </View>
+    <LinearGradient colors={['#deaaff', '#FFFFFF']} style={styles.container}>
+      {Loading ? (
+        <View style={styles.loading}>
+          <Spinner color="blue" />
+        </View>
+      ) : (
+        <>
+          <View style={styles.profile}>
+            <Image source={{uri: FotoProfil}} style={styles.fotoProfil} />
+            <Text style={styles.namaProfil}>{Nama}</Text>
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button full rounded danger style={styles.button} onPress={logout}>
+              <Text style={styles.buttonText}>LOGOUT</Text>
+            </Button>
+          </View>
+        </>
+      )}
     </LinearGradient>
   );
 };

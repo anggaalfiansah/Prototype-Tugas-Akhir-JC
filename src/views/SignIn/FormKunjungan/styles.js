@@ -54,6 +54,12 @@ const styles = StyleSheet.create({
     height: 50,
     marginVertical: 10,
   },
+  button: {
+    backgroundColor: '#e597ff',
+  },
+  button2: {
+    backgroundColor: '#d0d1ff',
+  },
 });
 
 export default styles;

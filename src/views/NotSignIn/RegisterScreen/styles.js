@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   form: {
-    marginBottom: 150,
+    marginBottom: 75,
   },
   inputContainer: {
     width: '90%',
@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 50,
     marginVertical: 10,
+  },
+  button: {
+    backgroundColor: '#e597ff',
+  },
+  button2: {
+    backgroundColor: '#d0d1ff',
   },
 });
 
